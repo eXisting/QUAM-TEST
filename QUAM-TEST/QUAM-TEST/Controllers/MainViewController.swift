@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     mainView.setup(delegate: self, dataSource: model)
+    model.loadImages()
   }
 }
 

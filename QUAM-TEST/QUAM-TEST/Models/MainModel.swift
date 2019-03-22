@@ -8,7 +8,16 @@
 
 import UIKit
 
-class MainModel: NSObject {  
+class MainModel: NSObject {
+  private let requestManager = RequestManager()
+  
+  func loadImages() {
+    requestManager.getListAsync(requestManager.rootEndpoint, for: Response.self) {
+      list, error in
+      
+      print(list)
+    }
+  }
 }
 
 extension MainModel: UICollectionViewDataSource {
