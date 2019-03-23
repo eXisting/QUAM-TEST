@@ -9,9 +9,15 @@
 import UIKit
 
 class MainViewContainer: UICollectionView {
+  static let generalCellIdentifier = "GeneralCell"
+  static let headerCellIdentifier = "HeaderCell"
+
   override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
     super.init(frame: frame, collectionViewLayout: layout)
     
+    register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: MainViewContainer.headerCellIdentifier)
+    register(GeneralCollectionViewCell.self, forCellWithReuseIdentifier: MainViewContainer.generalCellIdentifier)
+
     backgroundColor = .white
   }
   

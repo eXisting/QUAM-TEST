@@ -21,7 +21,13 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     mainView.setup(delegate: self, dataSource: model)
-    model.loadImages()
+    model.loadImages(reloadDataSource)
+  }
+  
+  private func reloadDataSource() {
+    DispatchQueue.main.async {
+      self.mainView.reloadData()      
+    }
   }
 }
 

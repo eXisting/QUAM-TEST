@@ -35,7 +35,7 @@ class Serializer {
   }
   
   class func encodeWithJsonSerializer(data: Data) -> Any? {
-    return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+    return try? JSONSerialization.jsonObject(with: data, options: [])
   }
 }
 

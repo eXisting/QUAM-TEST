@@ -8,12 +8,10 @@
 
 import UIKit
 
-import UIKit
-
 class RequestManager {
   private let request = UrlSessionHandler.shared
   
-  let rootEndpoint = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=78610c6fafbe6a423a77d31379f80bd2&format=json&per_page=10"
+  let rootEndpoint = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=78610c6fafbe6a423a77d31379f80bd2&format=json&per_page=10&nojsoncallback=1"
   
   // MARK: - GET
   
@@ -122,7 +120,7 @@ class UrlSessionHandler {
         completion(self!.emptyJson,  ServerResponse(ResponseStatus.serverError.rawValue))
         return
       }
-      
+            
       guard let serverError = Parser.anyToObject(destination: ServerResponse.self, json) else {
         completion(json, ServerResponse())
         return

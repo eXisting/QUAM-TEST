@@ -10,22 +10,30 @@ import UIKit
 
 class MainModel: NSObject {
   private let requestManager = RequestManager()
+  private var photos: [Photo] = []
   
-  func loadImages() {
-    requestManager.getListAsync(requestManager.rootEndpoint, for: Response.self) {
-      list, error in
+  func loadImages(_ completion: @escaping () -> Void) {
+    requestManager.getAsync(requestManager.rootEndpoint, for: Response.self) {
+      [weak self] object, error in
+      guard let photosData = object?.responseContainer.photos else {
+        print("Photos data is nil!")
+        return
+      }
       
-      print(list)
+      self?.photos = photosData
+      completion()
     }
   }
 }
 
 extension MainModel: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 0
+    return photos.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    return UICollectionViewCell()
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewContainer.generalCellIdentifier, for: indexPath)
+    
+    return cell
   }
 }

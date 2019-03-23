@@ -33,7 +33,7 @@ struct Response: Codable {
 }
 
 struct PhotosContainer: Codable {
-  var photos: Photos
+  var photos: [Photo]
   
   func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: PhotosJsonFields.self)
@@ -42,29 +42,29 @@ struct PhotosContainer: Codable {
   
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: PhotosJsonFields.self)
-    photos = try container.decode(Photos.self, forKey: .photos)
+    photos = try container.decode([Photo].self, forKey: .photo)
   }
 }
 
-struct Photos: Codable {
-  var id: Int
-  var secret: String
-  var server: Int
-  var farm: Int
+struct Photo: Codable {
+  var id: String?
+  var secret: String?
+  var server: String?
+  var farm: Int?
   
   func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: PhotosJsonFields.self)
-    try container.encode(id, forKey: .id)
-    try container.encode(secret, forKey: .secret)
-    try container.encode(server, forKey: .server)
-    try container.encode(farm, forKey: .farm)
+    try container.encode(id!, forKey: .id)
+    try container.encode(secret!, forKey: .secret)
+    try container.encode(server!, forKey: .server)
+    try container.encode(farm!, forKey: .farm)
   }
   
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: PhotosJsonFields.self)
-    id = try container.decode(Int.self, forKey: .id)
-    secret = try container.decode(String.self, forKey: .secret)
-    server = try container.decode(Int.self, forKey: .server)
-    farm = try container.decode(Int.self, forKey: .farm)
+    id = try? container.decode(String.self, forKey: .id)
+    secret = try? container.decode(String.self, forKey: .secret)
+    server = try? container.decode(String.self, forKey: .server)
+    farm = try? container.decode(Int.self, forKey: .farm)
   }
 }
