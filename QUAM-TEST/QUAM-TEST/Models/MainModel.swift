@@ -12,6 +12,10 @@ class MainModel: NSObject {
   private let requestManager = RequestManager()
   private var data: [SectionHandling] = []
   
+  subscript(section: Int) -> SectionHandling {
+    return data[section]
+  }
+  
   func loadImages(_ completion: @escaping () -> Void) {
     requestManager.getAsync(requestManager.rootEndpoint, for: Response.self) {
       [weak self] object, error in
@@ -43,12 +47,40 @@ extension MainModel: UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainViewContainer.generalCellIdentifier, for: indexPath) as? GeneralCollectionViewCell else {
+    guard let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: MainViewContainer.generalCellIdentifier,
+      for: indexPath) as? GeneralCollectionViewCell else {
       return UICollectionViewCell()
     }
     
     cell.setup(image: UIImage(named: "Header")!)
     
     return cell
+  }
+  
+  func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
+    if indexPath.section == 1 {
+      guard let headerView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: UICollectionView.elementKindSectionHeader,
+        withReuseIdentifier: MainViewContainer.actionHeaderIdentifier,
+        for: indexPath) as? ActionsHeader else {
+          fatalError("Returned class is not registered (ActionsHeader)")
+      }
+      
+      headerView.setup()
+      
+      return headerView
+    }
+    
+    guard let topHeader = collectionView.dequeueReusableSupplementaryView(
+      ofKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: MainViewContainer.expandableHeaderIdentifier,
+      for: indexPath) as? ExpandableHeader else {
+        fatalError("Returned class is not registered (ExpandableHeader)")
+    }
+    
+    return topHeader
   }
 }

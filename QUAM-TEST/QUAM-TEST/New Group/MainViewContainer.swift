@@ -10,14 +10,19 @@ import UIKit
 
 class MainViewContainer: UICollectionView {
   static let generalCellIdentifier = "GeneralCell"
-  static let headerCellIdentifier = "HeaderCell"
+  static let actionHeaderIdentifier = "ActionsHeader"
+  static let expandableHeaderIdentifier = "ExpandableHeader"
 
   override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
     super.init(frame: frame, collectionViewLayout: layout)
     
-    register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: MainViewContainer.headerCellIdentifier)
     register(GeneralCollectionViewCell.self, forCellWithReuseIdentifier: MainViewContainer.generalCellIdentifier)
+    register(ActionsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewContainer.actionHeaderIdentifier)
+    register(ExpandableHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewContainer.expandableHeaderIdentifier)
 
+    let layout = collectionViewLayout as? UICollectionViewFlowLayout
+    layout?.sectionHeadersPinToVisibleBounds = true
+    
     backgroundColor = .white
   }
   

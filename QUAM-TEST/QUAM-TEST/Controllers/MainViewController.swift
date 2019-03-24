@@ -51,4 +51,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     return UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
   }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    return CGSize(width: CGFloat(collectionView.frame.size.width), height: model[section].height)
+  }
 }
