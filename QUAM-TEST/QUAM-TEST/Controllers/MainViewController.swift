@@ -31,6 +31,24 @@ class MainViewController: UIViewController {
   }
 }
 
-extension MainViewController: UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: CGFloat((collectionView.frame.size.width / 2) - 4), height: collectionView.frame.size.height / 5)
+  }
   
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 0
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 0
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    if section == 0 {
+      return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    return UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
+  }
 }

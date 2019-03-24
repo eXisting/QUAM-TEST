@@ -11,6 +11,8 @@
 		DBDC9010224695B2006F993E /* MainViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC900C224695B2006F993E /* MainViewContainer.swift */; };
 		DBDC9011224695B2006F993E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBDC900D224695B2006F993E /* LaunchScreen.storyboard */; };
 		DBDC9012224695B2006F993E /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC900E224695B2006F993E /* HeaderCollectionViewCell.swift */; };
+		DBDC901622469948006F993E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC901522469948006F993E /* UIExtensions.swift */; };
+		DBDC90542246AABE006F993E /* CollectionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDC90532246AABE006F993E /* CollectionModels.swift */; };
 		ED231BF222450E190080D7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED231BF122450E190080D7A1 /* AppDelegate.swift */; };
 		ED231BF422450E190080D7A1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED231BF322450E190080D7A1 /* MainViewController.swift */; };
 		ED231BF922450E3A0080D7A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED231BF822450E3A0080D7A1 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 		DBDC900C224695B2006F993E /* MainViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewContainer.swift; sourceTree = "<group>"; };
 		DBDC900D224695B2006F993E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBDC900E224695B2006F993E /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		DBDC901522469948006F993E /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIExtensions.swift; path = ../../../../Documents/UIExtensions.swift; sourceTree = "<group>"; };
+		DBDC90532246AABE006F993E /* CollectionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionModels.swift; path = ../../../../CollectionModels.swift; sourceTree = "<group>"; };
 		ED231BEE22450E190080D7A1 /* QUAM-TEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QUAM-TEST.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED231BF122450E190080D7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED231BF322450E190080D7A1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +63,14 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		DBDC901422469929006F993E /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				DBDC901522469948006F993E /* UIExtensions.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		ED231BE522450E180080D7A1 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +95,7 @@
 				ED231C0E224536DE0080D7A1 /* Helpers */,
 				ED231C0322450E500080D7A1 /* Main */,
 				ED231C0522450E5E0080D7A1 /* Models */,
+				DBDC901422469929006F993E /* Tools */,
 				DBDC9013224695B6006F993E /* UI */,
 			);
 			path = "QUAM-TEST";
@@ -109,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				ED231C0C224531CA0080D7A1 /* MainModel.swift */,
+				DBDC90532246AABE006F993E /* CollectionModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,9 +218,11 @@
 				DBDC9012224695B2006F993E /* HeaderCollectionViewCell.swift in Sources */,
 				ED231C10224536F10080D7A1 /* RequestManager.swift in Sources */,
 				ED231C1422453C2F0080D7A1 /* PhotosCollection.swift in Sources */,
+				DBDC901622469948006F993E /* UIExtensions.swift in Sources */,
 				ED231BF422450E190080D7A1 /* MainViewController.swift in Sources */,
 				ED231BF222450E190080D7A1 /* AppDelegate.swift in Sources */,
 				ED231C0D224531CA0080D7A1 /* MainModel.swift in Sources */,
+				DBDC90542246AABE006F993E /* CollectionModels.swift in Sources */,
 				DBDC9010224695B2006F993E /* MainViewContainer.swift in Sources */,
 				ED231C122245383A0080D7A1 /* JsonSerializer.swift in Sources */,
 				DBDC900F224695B2006F993E /* GeneralCollectionViewCell.swift in Sources */,
