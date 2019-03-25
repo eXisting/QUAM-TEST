@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB083A0E22490EBD001AFDBD /* HeaderSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB083A0D22490EBD001AFDBD /* HeaderSlide.swift */; };
 		DB0FACAF2248ECBA00FD2D13 /* MainViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0FACAD2248ECBA00FD2D13 /* MainViewContainer.swift */; };
 		DB0FACB02248ECBA00FD2D13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB0FACAE2248ECBA00FD2D13 /* LaunchScreen.storyboard */; };
 		DB0FACB52248ECCE00FD2D13 /* ActionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0FACB22248ECCD00FD2D13 /* ActionsHeaderView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB083A0D22490EBD001AFDBD /* HeaderSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeaderSlide.swift; path = "QUAM-TEST/Helpers/HeaderSlide.swift"; sourceTree = SOURCE_ROOT; };
 		DB0FACAD2248ECBA00FD2D13 /* MainViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewContainer.swift; path = "QUAM-TEST/UI/MainViewContainer.swift"; sourceTree = SOURCE_ROOT; };
 		DB0FACAE2248ECBA00FD2D13 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "QUAM-TEST/UI/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
 		DB0FACB22248ECCD00FD2D13 /* ActionsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionsHeaderView.swift; path = "QUAM-TEST/UI/Cells/ActionsHeaderView.swift"; sourceTree = SOURCE_ROOT; };
@@ -61,6 +63,7 @@
 				DB0FACB12248ECC200FD2D13 /* Cells */,
 				DB0FACAE2248ECBA00FD2D13 /* LaunchScreen.storyboard */,
 				DB0FACAD2248ECBA00FD2D13 /* MainViewContainer.swift */,
+				DB083A0D22490EBD001AFDBD /* HeaderSlide.swift */,
 			);
 			name = UI;
 			path = "New Group";
@@ -240,6 +243,7 @@
 				DB0FACAF2248ECBA00FD2D13 /* MainViewContainer.swift in Sources */,
 				DB0FACBB2248ECE800FD2D13 /* MainModel.swift in Sources */,
 				ED231BF222450E190080D7A1 /* AppDelegate.swift in Sources */,
+				DB083A0E22490EBD001AFDBD /* HeaderSlide.swift in Sources */,
 				DB0FACB62248ECCE00FD2D13 /* ExpandableHeader.swift in Sources */,
 				ED231C122245383A0080D7A1 /* JsonSerializer.swift in Sources */,
 				DB0FACB52248ECCE00FD2D13 /* ActionsHeaderView.swift in Sources */,

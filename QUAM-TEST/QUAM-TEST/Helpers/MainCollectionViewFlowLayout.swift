@@ -19,7 +19,6 @@ class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {
         attributes.indexPath.section == 0 {
         
         let contentOffsetY = collectionView.contentOffset.y
-        print(contentOffsetY)
         
         if contentOffsetY > 0 {
           return
@@ -29,7 +28,7 @@ class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let height = attributes.frame.height - contentOffsetY
         
         attributes.frame = CGRect(x: 0, y: contentOffsetY, width: width, height: height)
-      }
+      }     
     }
     
     return layoutAttributes
