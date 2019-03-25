@@ -11,7 +11,7 @@ import UIKit
 class GeneralCollectionViewCell: UICollectionViewCell {
   private let bluredImage = UIImageView()
   
-  func setup(image: UIImage) {
+  func setup(image: UIImage?) {
     addBackgroundView(bluredImage)
     bluredImage.image = image
   }

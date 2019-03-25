@@ -53,7 +53,24 @@ extension MainModel: UICollectionViewDataSource {
       return UICollectionViewCell()
     }
     
-    cell.setup(image: UIImage(named: "Header")!)
+    guard let photoObject = data[indexPath.section][indexPath.row]?.photo else {
+      return cell
+    }
+    
+    let endpoint = requestManager.buildGetPhotoEndpoint(farmId: photoObject.farm, serverId: photoObject.server, id: photoObject.id, secret: photoObject.secret)
+    
+    requestManager.getDataAsync(from: endpoint) {
+      imageData in
+      guard let data = imageData else {
+        return
+      }
+      
+      let image = UIImage(data: data)
+      DispatchQueue.main.async {
+        cell.setup(image: image)
+      }
+    }
+    
     
     return cell
   }

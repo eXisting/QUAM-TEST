@@ -52,8 +52,8 @@ class RequestManager {
     request.getData(from: urlObject, completion: completion)
   }
   
-  func buildGetPhotoEndpoint(farmId: Int, serverId: Int, id: Int, secret: String) -> String {
-    return "https://farm\(farmId).staticflickr.com/\(serverId)/\(id)_\(secret).jpg"
+  func buildGetPhotoEndpoint(farmId: Int?, serverId: String?, id: String?, secret: String?) -> String {
+    return "https://farm\(farmId ?? 8).staticflickr.com/\(serverId ?? "")/\(id ?? "")_\(secret ?? "").jpg"
   }
 }
 
