@@ -11,8 +11,8 @@ import UIKit
 class HeaderSlide: UIView {
   private let container = UIStackView()
   
-  private var imageContent: UIImageView?
-  private var textLabel: UILabel?
+  var imageContent: UIImageView?
+  var textLabel: UILabel?
   
   func setup(image: UIImage?, text: String?) {
     if image != nil {

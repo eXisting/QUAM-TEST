@@ -12,11 +12,10 @@ class ExpandableHeader: UICollectionReusableView {
   private let contentImage = UIImageView()
   
   private let scrollView = UIScrollView()
-  private let pageControl = UIPageControl()
-  
-  private var slides: [HeaderSlide] = []
+  let pageControl = UIPageControl()  
+  var slides: [HeaderSlide] = []
     
-  func setup() {
+  func setup(delegate: UIScrollViewDelegate) {
     laidOutViews()
     customizeViews()
     
@@ -25,6 +24,8 @@ class ExpandableHeader: UICollectionReusableView {
     
     pageControl.numberOfPages = slides.count
     pageControl.currentPage = 0
+    
+    scrollView.delegate = delegate
   }
   
   private func laidOutViews() {
@@ -46,6 +47,7 @@ class ExpandableHeader: UICollectionReusableView {
   private func customizeViews() {
     contentImage.image = UIImage(named: "Header")
     contentImage.contentMode = .scaleAspectFill
+    scrollView.showsHorizontalScrollIndicator = false
   }
   
   private func createSlides() -> [HeaderSlide] {
@@ -55,7 +57,7 @@ class ExpandableHeader: UICollectionReusableView {
     let infoSlide = HeaderSlide()
     infoSlide.setup(image: nil, text: "No description defined.\nNo address defined.\nNo site defined.")
     
-    return [profileSlide, infoSlide]
+    return [infoSlide, profileSlide]
   }
   
   

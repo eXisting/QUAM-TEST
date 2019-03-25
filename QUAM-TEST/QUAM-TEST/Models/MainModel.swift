@@ -12,6 +12,8 @@ class MainModel: NSObject {
   private let requestManager = RequestManager()
   private var data: [SectionHandling] = []
   
+  var scrollDelegate: UIScrollViewDelegate?
+  
   subscript(section: Int) -> SectionHandling {
     return data[section]
   }
@@ -98,7 +100,7 @@ extension MainModel: UICollectionViewDataSource {
         fatalError("Returned class is not registered (ExpandableHeader)")
     }
     
-    topHeader.setup()
+    topHeader.setup(delegate: scrollDelegate!)
 
     return topHeader
   }
