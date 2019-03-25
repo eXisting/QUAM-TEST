@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
   
   override func loadView() {
     super.loadView()
-    mainView = MainViewContainer(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+    mainView = MainViewContainer(frame: view.frame, collectionViewLayout: MainCollectionViewFlowLayout())
     view = mainView
   }
   

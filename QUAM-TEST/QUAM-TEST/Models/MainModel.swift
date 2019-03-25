@@ -98,6 +98,8 @@ extension MainModel: UICollectionViewDataSource {
         fatalError("Returned class is not registered (ExpandableHeader)")
     }
     
+    topHeader.setup()
+
     return topHeader
   }
 }

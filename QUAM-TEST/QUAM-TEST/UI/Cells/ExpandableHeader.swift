@@ -10,9 +10,10 @@ import UIKit
 
 class ExpandableHeader: UICollectionReusableView {
   private let contentImage = UIImageView()
-  
+    
   func setup() {
     addBackgroundView(contentImage)
     contentImage.image = UIImage(named: "Header")
+    contentImage.contentMode = .scaleAspectFill
   }
 }

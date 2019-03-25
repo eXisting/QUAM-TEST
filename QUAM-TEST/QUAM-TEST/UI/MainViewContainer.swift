@@ -20,8 +20,7 @@ class MainViewContainer: UICollectionView {
     register(ActionsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewContainer.actionHeaderIdentifier)
     register(ExpandableHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewContainer.expandableHeaderIdentifier)
 
-    let layout = collectionViewLayout as? UICollectionViewFlowLayout
-    layout?.sectionHeadersPinToVisibleBounds = true
+    contentInsetAdjustmentBehavior = .never
     
     backgroundColor = .white
   }
