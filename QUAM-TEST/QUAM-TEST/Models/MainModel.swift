@@ -57,33 +57,9 @@ extension MainModel: UICollectionViewDataSource {
       return UICollectionViewCell()
     }
     
-    guard let photoObject = data[indexPath.section][indexPath.row]?.photo else {
-      return cell
-    }
+    guard let photoObject = data[indexPath.section][indexPath.row]?.photo else { return cell }
     
-    if let cachedImage = cacheStorage.object(forKey: photoObject.hash() as AnyObject) {
-      DispatchQueue.main.async {
-        cell.setup(image: (cachedImage as! UIImage))
-      }
-    }
-    
-    let endpoint = requestManager.buildGetPhotoEndpoint(farmId: photoObject.farm, serverId: photoObject.server, id: photoObject.id, secret: photoObject.secret)
-    
-    requestManager.getDataAsync(from: endpoint) {
-      [weak self] imageData in
-      guard let data = imageData else {
-        return
-      }
-      
-      let image = UIImage(data: data)
-      
-      self?.cacheStorage.setObject(image!, forKey: photoObject.hash() as AnyObject)
-      
-      DispatchQueue.main.async {
-        cell.setup(image: image)
-      }
-    }
-    
+    processImage(for: cell, with: photoObject)
     
     return cell
   }
@@ -114,5 +90,30 @@ extension MainModel: UICollectionViewDataSource {
     topHeader.setup(delegate: scrollDelegate!)
 
     return topHeader
+  }
+  
+  private func processImage(for cell: GeneralCollectionViewCell, with photoObject: Photo) {
+    if let cachedImage = cacheStorage.object(forKey: photoObject.hash() as AnyObject) {
+      DispatchQueue.main.async {
+        cell.setup(image: (cachedImage as! UIImage))
+      }
+    }
+    
+    let endpoint = requestManager.buildGetPhotoEndpoint(farmId: photoObject.farm, serverId: photoObject.server, id: photoObject.id, secret: photoObject.secret)
+    
+    requestManager.getDataAsync(from: endpoint) {
+      [weak self] imageData in
+      guard let data = imageData else {
+        return
+      }
+      
+      let image = UIImage(data: data)
+      
+      self?.cacheStorage.setObject(image!, forKey: photoObject.hash() as AnyObject)
+      
+      DispatchQueue.main.async {
+        cell.setup(image: image)
+      }
+    }
   }
 }
