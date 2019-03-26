@@ -58,8 +58,6 @@ class HeaderSlide: UIView {
     container.alignment = .center
     container.axis = .vertical
     
-    imageContent?.roundCorners(by: self.frame.height * 0.45 / 2)
-    
     textLabel?.adjustsFontSizeToFitWidth = true
     textLabel?.textColor = .white
     textLabel?.textAlignment = .center

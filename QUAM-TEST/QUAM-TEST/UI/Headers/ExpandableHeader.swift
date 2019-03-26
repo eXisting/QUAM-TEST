@@ -9,7 +9,7 @@
 import UIKit
 
 class ExpandableHeader: UICollectionReusableView {
-  private let contentImage = UIImageView()
+  let contentImage = UIImageView()
   
   private let scrollView = UIScrollView()
   let pageControl = UIPageControl()
@@ -19,6 +19,15 @@ class ExpandableHeader: UICollectionReusableView {
     setupSlideScrollView(slides: initializedSlides)
     return initializedSlides
   }()
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    contentImage.addBlur()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   func setup(delegate: UIScrollViewDelegate) {
     laidOutViews()
@@ -32,6 +41,7 @@ class ExpandableHeader: UICollectionReusableView {
   
   private func laidOutViews() {
     addBackgroundView(contentImage)
+    
     addSubview(scrollView)
     addSubview(pageControl)
     
@@ -48,7 +58,7 @@ class ExpandableHeader: UICollectionReusableView {
   
   private func customizeViews() {
     contentImage.image = UIImage(named: "Header")
-    contentImage.contentMode = .scaleAspectFill
+    contentImage.contentMode = .redraw
     scrollView.showsHorizontalScrollIndicator = false
   }
   
@@ -71,10 +81,10 @@ class ExpandableHeader: UICollectionReusableView {
     for i in 0 ..< slides.count {
       scrollView.addSubview(slides[i])
       slides[i].frame = CGRect(x: frame.width * CGFloat(i), y: 0, width: frame.width, height: frame.height)
-      
       slides[i].setup()
     }
     
+    slides[0].imageContent?.roundCorners(by: self.frame.height * 0.45 * 0.75 / 2)
     slides[1].textLabel?.font = slides[1].textLabel?.font.withSize(12)
   }
 }

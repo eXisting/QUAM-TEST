@@ -47,9 +47,9 @@ class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {
     guard let collectionView = collectionView else { return layoutAttributes }
     
     let contentOffsetY = collectionView.contentOffset.y
-    
+    let section = layoutAttributes.indexPath.section
     // if it is first section and it user scrolls to bottom
-    if contentOffsetY > 0 && layoutAttributes.indexPath.section == 0 {
+    if contentOffsetY > 0 && section == 0 {
       return layoutAttributes
     }
     
@@ -69,8 +69,24 @@ class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {
     let width = collectionView.frame.width
     let height = layoutAttributes.frame.height - contentOffsetY
     
-    layoutAttributes.frame = layoutAttributes.indexPath.section == 0 ?
+    layoutAttributes.frame = section == 0 ?
       CGRect(x: 0, y: contentOffsetY, width: width, height: height) : frameForSupplementaryView
+    
+    if section == 0 {
+      guard let supplementary = collectionView.supplementaryView(
+        forElementKind: UICollectionView.elementKindSectionHeader,
+        at: indexPath) as? ExpandableHeader else {
+          return layoutAttributes
+      }
+      
+      UIView.animate(withDuration: 0.2) {
+        if contentOffsetY < -75 {
+          supplementary.contentImage.transform = CGAffineTransform(scaleX: 1 - contentOffsetY * 0.004, y: 1)
+        } else if contentOffsetY >= -75 {
+          supplementary.contentImage.transform = CGAffineTransform.identity
+        }
+      }
+    }
     
     return layoutAttributes
   }
