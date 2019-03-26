@@ -21,6 +21,7 @@ class MainViewContainer: UICollectionView {
     register(ExpandableHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewContainer.expandableHeaderIdentifier)
 
     contentInsetAdjustmentBehavior = .never
+    collectionViewLayout = layout
     
     backgroundColor = .white
   }
