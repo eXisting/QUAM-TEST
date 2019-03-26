@@ -73,5 +73,7 @@ class ExpandableHeader: UICollectionReusableView {
       scrollView.addSubview(slides[i])
       slides[i].setup()
     }
+    
+    slides[1].textLabel?.font = slides[1].textLabel?.font.withSize(12)
   }
 }

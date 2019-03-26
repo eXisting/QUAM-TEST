@@ -79,10 +79,9 @@ extension MainViewController: UIScrollViewDelegate {
 
     let percentOffset: CGPoint = CGPoint(x: percentageHorizontalOffset, y: percentageVerticalOffset)
 
-    if percentOffset.x > 0 && percentOffset.x <= 0.25 {
-      parent.slides[0].imageContent?.transform = CGAffineTransform(scaleX: (0.25 - percentOffset.x) / 0.25, y: (0.25 - percentOffset.x) / 0.25)
-      parent.slides[0].textLabel?.transform = CGAffineTransform(scaleX: (0.25 - percentOffset.x) / 0.25, y: (0.25 - percentOffset.x) / 0.25)
-      parent.slides[1].textLabel?.transform = CGAffineTransform(scaleX: percentOffset.x / 0.25, y: percentOffset.x / 0.25)
+    let maxOffset: CGFloat = 1
+    if percentOffset.x > 0 && percentOffset.x <= maxOffset {
+      parent.slides[1].textLabel?.transform = CGAffineTransform(scaleX: (maxOffset / 2 + percentOffset.x) / maxOffset, y: (maxOffset / 2 + percentOffset.x) / maxOffset)
     }
   }
 }
