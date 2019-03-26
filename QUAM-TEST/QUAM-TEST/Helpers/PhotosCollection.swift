@@ -69,6 +69,6 @@ struct Photo: Codable {
   }
   
   func hash() -> String {
-    return "\(id)\(secret)\(server)\(farm)"
+    return "\(id ?? "")\(secret ?? "")\(server ?? "")\(farm ?? 0)"
   }
 }
