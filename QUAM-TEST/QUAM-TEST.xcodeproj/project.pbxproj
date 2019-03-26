@@ -125,12 +125,12 @@
 		EDF168F1224A1B76005D0786 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				EDF16903224A1D3B005D0786 /* Extensions */,
 				EDF168F2224A1B76005D0786 /* Cells */,
-				EDF168F4224A1B76005D0786 /* LaunchScreen.storyboard */,
+				EDF16903224A1D3B005D0786 /* Extensions */,
 				EDF168F5224A1B76005D0786 /* Headers */,
-				EDF168F8224A1B76005D0786 /* MainViewContainer.swift */,
 				EDF16906224A1F9A005D0786 /* HeaderSlide.swift */,
+				EDF168F4224A1B76005D0786 /* LaunchScreen.storyboard */,
+				EDF168F8224A1B76005D0786 /* MainViewContainer.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";

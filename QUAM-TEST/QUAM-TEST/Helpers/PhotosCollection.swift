@@ -67,4 +67,8 @@ struct Photo: Codable {
     server = try? container.decode(String.self, forKey: .server)
     farm = try? container.decode(Int.self, forKey: .farm)
   }
+  
+  func hash() -> String {
+    return "\(id)\(secret)\(server)\(farm)"
+  }
 }

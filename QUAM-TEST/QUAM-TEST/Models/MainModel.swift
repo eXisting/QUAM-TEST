@@ -12,6 +12,8 @@ class MainModel: NSObject {
   private let requestManager = RequestManager()
   private var data: [SectionHandling] = []
   
+  private let cacheStorage = NSCache<AnyObject, AnyObject>()
+  
   var scrollDelegate: UIScrollViewDelegate?
   
   subscript(section: Int) -> SectionHandling {
@@ -59,15 +61,24 @@ extension MainModel: UICollectionViewDataSource {
       return cell
     }
     
+    if let cachedImage = cacheStorage.object(forKey: photoObject.hash() as AnyObject) {
+      DispatchQueue.main.async {
+        cell.setup(image: (cachedImage as! UIImage))
+      }
+    }
+    
     let endpoint = requestManager.buildGetPhotoEndpoint(farmId: photoObject.farm, serverId: photoObject.server, id: photoObject.id, secret: photoObject.secret)
     
     requestManager.getDataAsync(from: endpoint) {
-      imageData in
+      [weak self] imageData in
       guard let data = imageData else {
         return
       }
       
       let image = UIImage(data: data)
+      
+      self?.cacheStorage.setObject(image!, forKey: photoObject.hash() as AnyObject)
+      
       DispatchQueue.main.async {
         cell.setup(image: image)
       }
