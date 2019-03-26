@@ -96,6 +96,7 @@ extension MainModel: UICollectionViewDataSource {
     if let cachedImage = cacheStorage.object(forKey: photoObject.hash() as AnyObject) {
       DispatchQueue.main.async {
         cell.setup(image: (cachedImage as! UIImage))
+        print("Cached image loaded for hash: \(photoObject.hash())")
       }
     }
     

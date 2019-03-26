@@ -20,7 +20,12 @@ class MainViewContainer: UICollectionView {
     register(ActionsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewContainer.actionHeaderIdentifier)
     register(ExpandableHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainViewContainer.expandableHeaderIdentifier)
 
-    contentInsetAdjustmentBehavior = .never
+    if #available(iOS 11.0, *) {
+      contentInsetAdjustmentBehavior = .never
+    } else {
+     contentInset = UIEdgeInsets.zero
+    }
+    
     collectionViewLayout = layout
     
     backgroundColor = .white

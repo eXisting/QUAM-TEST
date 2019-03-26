@@ -75,6 +75,15 @@ class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {
     return layoutAttributes
   }
   
+  override var itemSize: CGSize {
+    get  {
+      return CGSize(width: (collectionView!.frame.size.width / 2) - 3, height: (collectionView!.frame.size.height / 2.5))
+    }
+    set {
+      super.itemSize = newValue
+    }
+  }
+  
   override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
     return true
   }

@@ -42,7 +42,7 @@ class ExpandableHeader: UICollectionReusableView {
     
     NSLayoutConstraint(item: pageControl, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 0.95, constant: 0).isActive = true
     NSLayoutConstraint(item: pageControl, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
-
+    
     bringSubviewToFront(pageControl)
   }
   
@@ -69,8 +69,9 @@ class ExpandableHeader: UICollectionReusableView {
     scrollView.isPagingEnabled = true
     
     for i in 0 ..< slides.count {
-      slides[i].frame = CGRect(x: frame.width * CGFloat(i), y: 0, width: frame.width, height: frame.height)
       scrollView.addSubview(slides[i])
+      slides[i].frame = CGRect(x: frame.width * CGFloat(i), y: 0, width: frame.width, height: frame.height)
+      
       slides[i].setup()
     }
     
