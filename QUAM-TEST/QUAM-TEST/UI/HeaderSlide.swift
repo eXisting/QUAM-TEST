@@ -13,7 +13,7 @@ class HeaderSlide: UIView {
   var imageContent: UIImageView?
   var textLabel: UILabel?
   
-  func setup(image: UIImage?, text: String?) {
+  func initializeWith(image: UIImage?, text: String?) {
     if image != nil {
       imageContent = UIImageView()
     }
@@ -24,7 +24,9 @@ class HeaderSlide: UIView {
     
     imageContent?.image = image
     textLabel?.text = text
-    
+  }
+  
+  func setup() {
     laidOutViews()
     customizeViews()
   }
@@ -56,7 +58,7 @@ class HeaderSlide: UIView {
     container.alignment = .center
     container.axis = .vertical
     
-    imageContent?.roundCorners(by: 30)
+    imageContent?.roundCorners(by: self.frame.height * 0.45 / 2)
     
     textLabel?.adjustsFontSizeToFitWidth = true
     textLabel?.textColor = .white
