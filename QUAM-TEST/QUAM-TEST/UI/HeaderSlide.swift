@@ -8,7 +8,7 @@
 import UIKit
 
 class HeaderSlide: UIView {
-  private let container = UIStackView()
+  let container = UIStackView()
   
   var imageContent: UIImageView?
   var textLabel: UILabel?

@@ -50,7 +50,7 @@ class ExpandableHeader: UICollectionReusableView {
     
     scrollView.pin(to: self)
     
-    NSLayoutConstraint(item: pageControl, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 0.95, constant: 0).isActive = true
+    NSLayoutConstraint(item: pageControl, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.55, constant: 0).isActive = true
     NSLayoutConstraint(item: pageControl, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
     
     bringSubviewToFront(pageControl)

@@ -86,6 +86,10 @@ class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {
           supplementary.contentImage.transform = CGAffineTransform.identity
         }
       }
+      
+      for i in 0..<2 {
+        supplementary.slides[i].center.y = height / 2
+      }
     }
     
     return layoutAttributes
