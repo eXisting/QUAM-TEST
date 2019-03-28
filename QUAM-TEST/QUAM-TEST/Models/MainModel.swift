@@ -8,16 +8,17 @@
 
 import UIKit
 
-class MainModel: NSObject {
+protocol ImageProcessing {
+  func processImage(for cell: GeneralCollectionViewCell, with photoObject: Photo)
+}
+
+class MainModel {
   private let requestManager = RequestManager()
-  private var data: [SectionHandling] = []
-  
   private let cacheStorage = NSCache<AnyObject, AnyObject>()
+  var dataSource: MainDataSource!
   
-  var scrollDelegate: UIScrollViewDelegate?
-  
-  subscript(section: Int) -> SectionHandling {
-    return data[section]
+  init(delegate: UIScrollViewDelegate) {
+    dataSource = MainDataSource(scrollDelegate: delegate, imageProcessDelegate: self)
   }
   
   func loadImages(_ completion: @escaping () -> Void) {
@@ -34,65 +35,14 @@ class MainModel: NSObject {
   }
   
   private func initData(with photos: [Photo]) {
-    data = [
-      TopSectionData(),
-      GeneralSectionData(photos: photos)
-    ]
+    dataSource.set(data: [TopSectionData(), GeneralSectionData(photos: photos)])
   }
 }
 
-extension MainModel: UICollectionViewDataSource {
-  func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return data.count
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return data[section].numbersOfElements
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: MainViewContainer.generalCellIdentifier,
-      for: indexPath) as? GeneralCollectionViewCell else {
-      return UICollectionViewCell()
-    }
-    
-    guard let photoObject = data[indexPath.section][indexPath.row]?.photo else { return cell }
-    
-    processImage(for: cell, with: photoObject)
-    
-    return cell
-  }
-  
-  func collectionView(_ collectionView: UICollectionView,
-                      viewForSupplementaryElementOfKind kind: String,
-                      at indexPath: IndexPath) -> UICollectionReusableView {
-    if indexPath.section == 1 {
-      guard let headerView = collectionView.dequeueReusableSupplementaryView(
-        ofKind: UICollectionView.elementKindSectionHeader,
-        withReuseIdentifier: MainViewContainer.actionHeaderIdentifier,
-        for: indexPath) as? ActionsHeader else {
-          fatalError("Returned class is not registered (ActionsHeader)")
-      }
-      
-      headerView.setup()
-      
-      return headerView
-    }
-    
-    guard let topHeader = collectionView.dequeueReusableSupplementaryView(
-      ofKind: UICollectionView.elementKindSectionHeader,
-      withReuseIdentifier: MainViewContainer.expandableHeaderIdentifier,
-      for: indexPath) as? ExpandableHeader else {
-        fatalError("Returned class is not registered (ExpandableHeader)")
-    }
-    
-    topHeader.setup(delegate: scrollDelegate!)
+//placeholders for images
 
-    return topHeader
-  }
-  
-  private func processImage(for cell: GeneralCollectionViewCell, with photoObject: Photo) {
+extension MainModel: ImageProcessing {
+  func processImage(for cell: GeneralCollectionViewCell, with photoObject: Photo) {
     if let cachedImage = cacheStorage.object(forKey: photoObject.hash() as AnyObject) {
       DispatchQueue.main.async {
         cell.setup(image: (cachedImage as! UIImage))

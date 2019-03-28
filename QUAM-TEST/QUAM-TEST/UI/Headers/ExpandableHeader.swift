@@ -88,3 +88,8 @@ class ExpandableHeader: UICollectionReusableView {
     slides[1].textLabel?.font = slides[1].textLabel?.font.withSize(12)
   }
 }
+
+//
+// didScroll
+// scrollView.contentOffset == scrollView.contentSize / 2
+// self.label.scale == from scrollView.contentSize / 2 -> scrollView.contentSize

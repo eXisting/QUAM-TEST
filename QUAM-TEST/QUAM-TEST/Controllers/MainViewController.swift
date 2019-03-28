@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-  private let model = MainModel()
+  private var model: MainModel!
   private var mainView: MainViewContainer!
   
   override func loadView() {
@@ -20,41 +20,15 @@ class MainViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    mainView.setup(delegate: self, dataSource: model)
+    model = MainModel(delegate: self)
+    mainView.setup(delegate: model.dataSource, dataSource: model.dataSource)
     model.loadImages(reloadDataSource)
-    model.scrollDelegate = self
   }
   
   private func reloadDataSource() {
     DispatchQueue.main.async {
       self.mainView.reloadData()      
     }
-  }
-}
-
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return (collectionViewLayout as! UICollectionViewFlowLayout).itemSize
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 0
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 1
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    if section == 0 {
-      return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    
-    return UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-    return CGSize(width: CGFloat(collectionView.frame.size.width), height: model[section].height)
   }
 }
 
