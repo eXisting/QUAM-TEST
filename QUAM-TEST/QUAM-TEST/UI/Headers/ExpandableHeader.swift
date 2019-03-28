@@ -9,9 +9,8 @@
 import UIKit
 
 class ExpandableHeader: UICollectionReusableView {
-  let contentImage = UIImageView()
-  
   private let scrollView = UIScrollView()
+  let contentImage = UIImageView()
   let pageControl = UIPageControl()
   
   lazy var slides: [HeaderSlide] = {
@@ -23,6 +22,10 @@ class ExpandableHeader: UICollectionReusableView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentImage.addBlur()
+    laidOutViews()
+    customizeViews()
+    
+    clipsToBounds = true
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -30,9 +33,6 @@ class ExpandableHeader: UICollectionReusableView {
   }
   
   func setup(delegate: UIScrollViewDelegate) {
-    laidOutViews()
-    customizeViews()
-    
     pageControl.numberOfPages = slides.count
     pageControl.currentPage = 0
     
@@ -41,6 +41,7 @@ class ExpandableHeader: UICollectionReusableView {
   
   private func laidOutViews() {
     addBackgroundView(contentImage)
+    contentImage.clipsToBounds = true
     
     addSubview(scrollView)
     addSubview(pageControl)

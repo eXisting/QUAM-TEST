@@ -47,6 +47,7 @@ extension MainDataSource: UICollectionViewDataSource {
     guard let photoObject = data[indexPath.section][indexPath.row]?.photo else { return cell }
     
     imageProcessingDelegate?.processImage(for: cell, with: photoObject)
+    cell.initialize()
     
     return cell
   }

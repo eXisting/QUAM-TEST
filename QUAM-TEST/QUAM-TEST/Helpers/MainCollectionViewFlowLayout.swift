@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {  
+class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {
   override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
     guard let layoutAttributes = super.layoutAttributesForElements(in: rect) else { return nil }
     
@@ -79,10 +79,13 @@ class MainCollectionViewFlowLayout: UICollectionViewFlowLayout {
           return layoutAttributes
       }
       
-      UIView.animate(withDuration: 0.2) {
-        if contentOffsetY < -75 {
-          supplementary.contentImage.transform = CGAffineTransform(scaleX: 1 - contentOffsetY * 0.004, y: 1)
-        } else if contentOffsetY >= -75 {
+      if contentOffsetY < -75 {
+        let scaleFactor = 1 - contentOffsetY * 0.004
+        UIView.animate(withDuration: 0.55) {
+          supplementary.contentImage.transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+        }
+      } else if contentOffsetY >= -75 {
+        UIView.animate(withDuration: 0.55) {
           supplementary.contentImage.transform = CGAffineTransform.identity
         }
       }

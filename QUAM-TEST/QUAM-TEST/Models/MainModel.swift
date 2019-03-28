@@ -42,12 +42,14 @@ class MainModel {
 //placeholders for images
 
 extension MainModel: ImageProcessing {
-  func processImage(for cell: GeneralCollectionViewCell, with photoObject: Photo) {
+  func processImage(for cell: GeneralCollectionViewCell, with photoObject: Photo) {    
     if let cachedImage = cacheStorage.object(forKey: photoObject.hash() as AnyObject) {
       DispatchQueue.main.async {
         cell.setup(image: (cachedImage as! UIImage))
         print("Cached image loaded for hash: \(photoObject.hash())")
       }
+      
+      return
     }
     
     let endpoint = requestManager.buildGetPhotoEndpoint(farmId: photoObject.farm, serverId: photoObject.server, id: photoObject.id, secret: photoObject.secret)
