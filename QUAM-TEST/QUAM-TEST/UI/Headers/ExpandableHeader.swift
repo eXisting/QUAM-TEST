@@ -35,7 +35,7 @@ class ExpandableHeader: UICollectionReusableView {
   func setup(delegate: UIScrollViewDelegate) {
     pageControl.numberOfPages = slides.count
     pageControl.currentPage = 0
-    
+    pageControl.isUserInteractionEnabled = false
     scrollView.delegate = delegate
   }
   
@@ -81,16 +81,13 @@ class ExpandableHeader: UICollectionReusableView {
     
     for i in 0 ..< slides.count {
       scrollView.addSubview(slides[i])
-      slides[i].frame = CGRect(x: frame.width * CGFloat(i), y: 0, width: frame.width, height: frame.height)
+      slides[i].initialOrigin = CGPoint(x: 0, y: 0)
+      slides[i].frame = CGRect(origin: slides[i].initialOrigin, size: CGSize(width: frame.width, height: frame.height))
       slides[i].setup()
     }
     
     slides[0].imageContent?.roundCorners(by: self.frame.height * 0.45 * 0.75 / 2)
-    slides[1].textLabel?.font = slides[1].textLabel?.font.withSize(12)
+    slides[1].textLabel?.transform = CGAffineTransform(scaleX: 0, y: 0)
+    slides[1].textLabel?.alpha = 0
   }
 }
-
-//
-// didScroll
-// scrollView.contentOffset == scrollView.contentSize / 2
-// self.label.scale == from scrollView.contentSize / 2 -> scrollView.contentSize

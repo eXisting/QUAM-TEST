@@ -44,18 +44,10 @@ extension MainViewController: UIScrollViewDelegate {
     let maximumHorizontalOffset: CGFloat = scrollView.contentSize.width - scrollView.frame.width
     let currentHorizontalOffset: CGFloat = scrollView.contentOffset.x
 
-    // vertical
-    let maximumVerticalOffset: CGFloat = scrollView.contentSize.height - scrollView.frame.height
-    let currentVerticalOffset: CGFloat = scrollView.contentOffset.y
-
     let percentageHorizontalOffset: CGFloat = currentHorizontalOffset / maximumHorizontalOffset
-    let percentageVerticalOffset: CGFloat = currentVerticalOffset / maximumVerticalOffset
-
-    let percentOffset: CGPoint = CGPoint(x: percentageHorizontalOffset, y: percentageVerticalOffset)
-
-    let maxOffset: CGFloat = 1
-    if percentOffset.x > 0 && percentOffset.x <= maxOffset {
-      parent.slides[1].textLabel?.transform = CGAffineTransform(scaleX: (maxOffset / 2 + percentOffset.x) / maxOffset, y: (maxOffset / 2 + percentOffset.x) / maxOffset)
-    }
+    
+    parent.slides[1].frame.origin = CGPoint(x: parent.slides[1].initialOrigin.x + currentHorizontalOffset, y: 0)
+    parent.slides[1].textLabel?.transform = CGAffineTransform(scaleX: percentageHorizontalOffset, y: percentageHorizontalOffset)
+    parent.slides[1].textLabel?.alpha = percentageHorizontalOffset
   }
 }

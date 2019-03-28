@@ -13,6 +13,8 @@ class HeaderSlide: UIView {
   var imageContent: UIImageView?
   var textLabel: UILabel?
   
+  var initialOrigin: CGPoint!
+  
   func initializeWith(image: UIImage?, text: String?) {
     if image != nil {
       imageContent = UIImageView()

@@ -39,8 +39,6 @@ class MainModel {
   }
 }
 
-//placeholders for images
-
 extension MainModel: ImageProcessing {
   func processImage(for cell: GeneralCollectionViewCell, with photoObject: Photo) {    
     if let cachedImage = cacheStorage.object(forKey: photoObject.hash() as AnyObject) {

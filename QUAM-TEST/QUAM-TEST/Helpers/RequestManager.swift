@@ -9,7 +9,7 @@
 import UIKit
 
 class RequestManager {
-  private let request = UrlSessionHandler.shared
+  private let request = UrlSessionHandler()
   
   let rootEndpoint = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=78610c6fafbe6a423a77d31379f80bd2&format=json&per_page=10&nojsoncallback=1"
   
@@ -85,12 +85,8 @@ enum ResponseStatus: String {
 
 class UrlSessionHandler {
   
-  static let shared = UrlSessionHandler()
-  
   private let defaultSession = URLSession(configuration: .default)
   private let emptyJson: Parser.JsonDictionary = [:]
-  
-  private init() {}
   
   func startSessionTask(
     _ url: String,
